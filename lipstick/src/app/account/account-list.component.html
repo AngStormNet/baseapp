@@ -1,0 +1,17 @@
+<table class="cx-table-admin" cellspacing="0">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Groups</th>
+            <th>Email</th>
+       </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of data;">
+            <td><a [routerLink]="[ { outlets: { modaloutlet: ['edit',user.id] } } ]" id="acc-list-{{ user.first_name}}">{{ user.first_name}} {{ user.last_name }}</a></td>
+            <td id="{{ user.id }}groups" class="{{user.first_name}}-groups"><span *ngFor="let group of user.groups; let isLast=last "  >{{ group.name }}{{isLast ? '' : ', '}}</span></td>
+            <td>{{ user.email }}</td>
+        </tr>
+    </tbody>
+</table>
+<router-outlet name="modaloutlet"></router-outlet>

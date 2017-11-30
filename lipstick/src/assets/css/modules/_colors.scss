@@ -1,0 +1,67 @@
+//color palette
+
+//primary palette
+//TODO Find light, medium colors
+$color-primary-light:  #0C5D9B;
+$color-primary:  #0C5D9B;
+$color-primary-medium: #062F4F;
+$color-primary-dark: #062F4F;
+$color-primary-contrast: #FFF;
+
+// Stoplight Colors
+$color-error: red;
+$color-information: $color-primary;
+$color-success: green;
+$color-warn: orange;
+
+// Object specific color
+$color-primary-action:  #FFC107;
+$color-primary-border: rgba(0,0,0,.12);
+$color-primary-background: #FFF;
+$color-primary-text: #000;
+$color-primary-overlay: rgba(14, 104, 173, 0.075); // #0C5D9B
+
+$color-input-background: #F6F6F6;
+$color-text-contrast: #FFF;
+
+// Added to Angular Material
+$mat-button-hover: #DBDBDB;
+$mat-button-text: #000;
+
+// Shawdows
+$card-shadow-base: 0 3px 3px rgba(0,0,0,0.25);
+
+//TODO finish putting in gradients for full color map
+// NG Material Design color map
+$conex-blue: (
+    50: #ffebee,
+    100: #ffcdd2,
+    200: #ef9a9a,
+    300: #e57373,
+    400: #ef5350,
+    500: $color-primary,
+    600: #e53935,
+    700: $color-primary-medium,
+    800: #052a46,
+    900: $color-primary-dark,
+    A100: #8281FF,
+    A200: #448AFF,
+    A400: #ff1744,
+    A700: #d50000,
+    contrast: (
+        50: white,
+        100: white,
+        200: white,
+        300: white,
+        400: white,
+        500: white,
+        600: white,
+        700: white,
+        800: white,
+        900: white,
+        A100: white,
+        A200: white,
+        A400: white,
+        A700: white,
+    )
+);

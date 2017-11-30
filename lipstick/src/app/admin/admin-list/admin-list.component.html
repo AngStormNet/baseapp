@@ -1,0 +1,15 @@
+<div *ngIf="addObjects" class="cx-admin-add-button">
+    <button md-fab (click)="toggleAdd()">
+        <md-icon class="cx-fab-mini">add</md-icon>
+    </button>
+</div>
+
+<div class="cx-admin-width">
+    <alert></alert>
+    <div *ngIf="objectAdd">
+        <cnx-admin-detail [details]="" [apiString]="apiString" [(objectAdd)]="objectAdd" [(data)]="data"></cnx-admin-detail>
+    </div>
+    <div *ngFor="let item of (data | async)">
+        <cnx-admin-detail [details]="item" [apiString]="apiString" [(data)]="data"></cnx-admin-detail>
+    </div>
+</div>

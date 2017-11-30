@@ -1,0 +1,1157 @@
+//modules
+@import 'modules/colors';
+
+@import 'modules/fonts';
+@import 'modules/inputs';
+@import 'modules/margins';
+//end of modules
+
+//base/libs
+@import '~@angular/material/theming';
+@import '~purecss/build/pure-min';
+$icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
+@import '~bootstrap-sass/assets/stylesheets/_bootstrap.scss';
+@import '~bootstrap-material-design/dist/css/bootstrap-material-design.min';
+@import '~bootstrap-material-design/dist/css/ripples.min';
+//end of base libs
+
+//Includ the Angular Material Design Theming component
+@include mat-core();
+
+// Define the palettes for the primary, accent and warning colors of material them
+$conex-primary: mat-palette($conex-blue, 500, 900, A200);
+$conex-accent:  mat-palette($mat-amber, 500, 900, A100);
+$conex-warn:    mat-palette($mat-deep-orange);
+
+//Create the theme using mat-light-theme function
+$conex-theme: mat-light-theme($conex-primary, $conex-accent, $conex-warn);
+
+//Create the theme using the angular-material-theme function
+@include angular-material-theme($conex-theme);
+
+// mixins
+@mixin cx-container($width, $background-clr) {
+    @extend .jumbotron;
+    width: $width;
+    background: $background-clr;
+    margin: 0 auto;
+    padding-top: 0;
+}
+
+//header-nav mixin
+@mixin cx-header($width, $height, $padding, $background-clr) {
+    @extend .navbar, .navbar-default;
+    width: $width;
+    height: $height;
+    margin: 0;
+    padding: $padding;
+    background: $background-clr;
+}
+
+//btn mixin
+@mixin cx-button($width, $background-clr, $color, $font) {
+    @extend .btn, .btn-raised;
+    background: $background-clr;
+    font-family: $font;
+    text-transform: none;
+    width: $width;
+}
+
+//drop-down menu
+@mixin cx-drop-down($color,$font) {
+    @extend .dropdown;
+    color: $color;
+    font: $font;
+}
+
+//search bar
+@mixin cx-search-bar($width,$height,$bg-color,$position) {
+    width: $width;
+    height: $height;
+    background: $bg-color;
+    float: $position;
+    border: none;
+    border-radius: 3px;
+    padding-left: 5px;
+}
+
+//active nav element
+@mixin cx-active() {
+    @extend .active;
+    border-bottom: 2.5px solid $color-primary-action;
+    background: none;
+    width: 44px;
+}
+
+//hover mixin
+@mixin cx-hover($bg-color, $font-color) {
+    @extend .btn;
+    background-color: $bg-color;
+    color: $font-color;
+    width: inherit;
+}
+//end of mixins
+
+//base styles
+a, a:focus, a:hover {
+    color: $color-primary;
+    text-decoration: none;
+}
+
+body {
+    font-family: $font-family-primary;
+}
+
+header {
+    height: 80px;
+}
+// Boostratp modifications
+.nav > li > a:hover, .cx-nav-menu > li > a:hover, .nav > li > a:focus, .cx-nav-menu > li > a:focus {
+    text-decoration: none;
+    background-color: transparent;
+    color: $color-primary-action;
+    cursor: pointer;
+}
+
+.row {
+    // TODO - remove row class usage if not needed
+    //override unneeded bootstrap margins
+    margin: auto;
+}
+
+// CONEX CLASSES
+
+.cx-button-action {
+    @include cx-button(auto,$color-primary-action,#fff,$font-family-medium);
+}
+
+.cx-button-cancel {
+    @include cx-button(auto,$color-primary-background,$mat-button-text,$font-family-medium);
+}
+
+.cx-button-submit {
+    @include cx-button(auto,$color-primary-action,#fff,$font-family-medium);
+    float: right;
+    z-index: 9;
+}
+
+.cx-card-list {
+    margin: 0 30px 30px 30px;
+}
+
+.cx-color-action {
+    color: $color-primary-action !important;
+}
+
+.cx-color-black {
+    // needs to overwrite mat-icon color
+    color: #000 !important;
+}
+
+.cx-color-primary {
+    color: $color-primary;
+}
+
+.cx-color-warn {
+    color: $color-warn !important;
+}
+
+.cx-container-form {
+    background-color: $color-primary-background;
+    border: 1px solid $color-primary-border;
+    margin-left: $margin-base-px;
+    margin-right:  $margin-base-px;
+    padding:  $margin-base-px;
+    overflow: auto;
+    max-height: inherit;
+}
+
+.cx-container-list {
+    background-color: $color-primary-background;
+    border: 1px solid $color-primary-border;
+    overflow: auto;
+}
+
+.cx-display-inline-block {
+    display: inline-block;
+}
+
+.cx-error {
+    color: $color-error;
+    font-weight: 300;
+}
+
+.cx-icon-edit {
+    // align edit icon next to comment details
+    cursor: pointer;
+    margin-left: $margin-small;
+    position: relative;
+    top: $margin-small-px;
+}
+
+.cx-icon-down-arrow {
+    //styling down arrow
+    // need to understand why the color needs to be forced
+    border-left:1px solid white;
+    color: #000000 !important;
+    margin-left: 10px;
+}
+
+.cx-label {
+    color: $font-color-label;
+    font-size: 13px;
+    font-weight: 300;
+    margin: 0;
+    font-family: $font-family-primary;
+}
+
+.cx-label-large {
+    font-size: $font-size-small;
+    margin-top: 8px;
+}
+
+.cx-label-require::after {
+    content: " *";
+}
+
+.cx-label-section {
+    font-size: $font-size-small;
+    font-weight: $font-weight-bold;
+    padding-top: $margin-base;
+    padding-bottom: $margin-base;
+}
+
+.cx-label-tab-group {
+    color: $font-color-label;
+    font-size: $font-size-small;
+    padding-bottom: $margin-base;
+    padding-left: 10px;
+}
+
+.cx-label-small {
+    position: relative;
+    top: -3px;
+    font-size: 12px;
+}
+
+.cx-nowrap {
+    white-space: nowrap;
+}
+
+.cx-margin-0 {
+    margin: 0;
+}
+
+.cx-margin-base {
+    margin-bottom: $margin-base;
+}
+
+.cx-margin-base-bottom {
+    margin-bottom: $margin-base;
+}
+
+.cx-margin-base-left {
+    margin-left: $margin-base;
+}
+
+.cx-margin-base-right {
+    margin-right: $margin-base;
+}
+
+.cx-margin-base-top {
+    margin-top: $margin-base !important;
+}
+
+.cx-margin-large-right {
+    margin-right: $margin-large;
+}
+
+.cx-margin-large-top {
+    margin-top: $margin-large !important;
+}
+
+.cx-margin-small-top {
+    margin-top: $margin-small;
+}
+
+.cx-margin-xlarge-left {
+    margin-left: $margin-xlarge;
+}
+
+.cx-input-padding {
+    padding: 4px;
+}
+
+.cx-padding-base-right {
+    padding-right: $margin-base;
+}
+
+.cx-padding-base-top {
+    padding-top: $margin-base;
+}
+
+.cx-input-padding-left {
+    padding-left: $input-padding;
+}
+
+.cx-select {
+    margin-top: 17px;
+    width: 100%;
+}
+
+.cx-text-align-center {
+    text-align: center;
+}
+
+.cx-text-align-right {
+    text-align: right;
+}
+
+.cx-textarea {
+    background-color: $color-input-background !important;
+    border: 1px solid $color-primary-border !important;
+    padding: $input-padding !important;
+    white-space: pre-wrap !important;
+}
+
+// This definition removes the first blank line in the textarea.
+.cx-textarea::before {
+    line-height: 0;
+}
+
+.cx-vertical-top {
+    vertical-align: top;
+}
+
+.cx-width-5 {
+    /* needed to override LI property on end columns */
+    margin-right: 0 !important;
+    width: 5% !important;
+}
+
+.cx-width-20 {
+    /* needed to override LI property on end columns */
+    margin-right: 0 !important;
+    width: 20% !important;
+}
+
+.cx-width-25 {
+    /* needed to override LI property on end columns */
+    margin-right: 0 !important;
+    width: 25% !important;
+}
+
+.cx-width-35 {
+    /* needed to override LI property on end columns */
+    margin-right: 0 !important;
+    width: 35% !important;
+}
+
+.cx-width-40 {
+    /* needed to override LI property on end columns */
+    margin-right: 0 !important;
+    width: 40% !important;
+}
+
+.cx-width-50 {
+    /* important to override width in LI property */
+    width: 50% !important;
+}
+
+.cx-width-75 {
+    /* important to override width in LI property */
+    width: 75% !important;
+}
+
+.cx-w100 {
+    width: 100% !important;
+}
+//end of base styles
+
+
+//start of login component
+//TODO remove any css that should be in custom login css
+.cx-login-container {
+    @include cx-container(1050px,#ffffff);
+}
+
+.raytheon-logo {
+    background: url(../images/raytheon-logo.png);
+    background-position: 30px 26px;
+    background-repeat: no-repeat;
+    background-size: 185px;
+    height: 80px;
+}
+
+.form-group {
+    color: #000;
+    padding-bottom: 0;
+}
+
+.form-control {
+    height: 25px;
+    padding: 7px 0;
+    line-height: 1.3;
+    font-size: 14px;
+}
+
+.cx-fab-mini {
+    // need to make text override important to override color theme
+    color: $mat-button-text !important;
+    font-size: $font-size-xlarge;
+}
+
+.cx-font-large {
+    font-size: $font-size-large;
+}
+
+.cx-font-base {
+    font-size: $font-size-large;
+}
+
+.cx-font-weight-medium {
+    font-family: $font-family-medium;
+}
+
+.cx-font-xlarge {
+    font-size: $font-size-xlarge;
+}
+
+.cx-forgot-password {
+    text-align: center;
+    color: $color-primary-dark !important;
+    position: relative;
+    top: 28px;
+    font-size: 13px;
+    left: 0;
+    cursor: pointer;
+}
+
+.cx-forgot-password:hover {
+    color: $color-primary-dark;
+}
+
+.cx-forgot-password:visited {
+    color: $color-primary-dark;
+}
+
+.cx-login-background {
+    padding-top: 35px;
+    background: none;
+}
+
+.cx-help {
+    @extend .alert, .alert-info;
+    background-color: $color-primary-action;
+    color: $font-color-contrast;
+}
+
+.cx-has-error .form-control {
+    border: 1px solid #a94442;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+}
+
+.cx-help-block {
+    display: block;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    color: $font-color-label-dark;
+}
+//end of login component
+
+//start of home components
+//TODO remove any css that should be in custom home css
+.cx-nav-active {
+    @include cx-active;
+}
+
+.cx-nav-menu {
+    @extend .nav, .navbar-nav;
+}
+
+.cx-search {
+    @include cx-search-bar(280px,40px,$color-primary,left);
+    padding-left: 34px;
+}
+
+.cx-user-profile-menu {
+    @include cx-drop-down($color-text-contrast,$font-family-primary);
+    float: right;
+    width: 90px;
+}
+
+.cx-nav-header {
+    @include cx-header(100%,70px,0,$color-primary);
+    height: 80px;
+}
+
+.cx-header-ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    width: 100%;
+}
+
+.cx-header-li {
+    float: left;
+    width: 33%;
+}
+
+.cx-header-logo {
+    color: $font-color-label-dark;
+    font-family: $font-family-logo;
+    font-size: 30px;
+    font-weight: 100;
+    padding-top: 20px;
+    height: 78px;
+    text-align: center;
+    white-space: nowrap;
+    .cx-logo-accent {
+        font-weight: 100;
+        color: $color-primary-action;
+        @extend .cx-header-logo;
+    }
+}
+
+.cx-header-um {
+    height: 80px;
+    padding: 25px 0 24px 0;
+    text-align: right;
+    width: 34%;
+}
+
+.cx-search-container {
+    width: 300px;
+    vertical-align: middle;
+    white-space: nowrap;
+    position: relative;
+}
+
+.cx-search-container input.cx-search {
+    width: 300px;
+    height: 41px;
+    background: #fff;
+    border: none;
+    font-size: 10pt;
+    float: left;
+    color:  $color-primary-dark;
+    padding-left: 45px;
+    border-radius: 2px;
+    padding-top: 3px;
+}
+
+.cx-search-container input.cx-search::-webkit-input-placeholder {
+    color: $font-color-placeholder;
+    font-family: $font-family-primary;
+}
+
+.cx-search-container input.cx-search:-moz-placeholder { /* Firefox 18- */
+    color: $font-color-placeholder;
+}
+
+.cx-search-container input.cx-search::-moz-placeholder { /* Firefox 19+ */
+    color: $font-color-placeholder;
+}
+
+.cx-search-container input.cx-search:-ms-input-placeholder {
+    color: $font-color-placeholder;
+}
+
+.cx-search-icon {
+    position: absolute;
+    top: 50%;
+    margin-left: 15px;
+    margin-top: 13px;
+    z-index: 1;
+    color: $font-color-placeholder;
+    left: 0;
+}
+
+.cx-logo-container {
+    margin-top: 20px;
+}
+
+.cx-logo {
+    color: $font-color-label-dark;
+    font-family: $font-family-logo;
+    font-size: 30px;
+    font-weight: 100;
+    padding-top: 20px;
+    .cx-logo-accent {
+        font-weight: 100;
+        color: $color-primary-action;
+        @extend .cx-logo;
+    }
+}
+
+.cx-login-title {
+    text-align: center;
+    color: $color-primary-dark;
+    font-family: $font-family-light;
+    font-size: 55px;
+}
+
+.cx-login-copy {
+    font-family: $font-family-primary;
+    color: $font-color-placeholder;
+    text-align: center;
+    font-size: 17px !important;
+}
+
+.cx-sub-header {
+    @include cx-header(100%,20px,15px,gray);
+}
+
+.cx-nav{
+    @extend .cx-menu;
+    padding: 0 30px;
+    box-shadow: 0 3px 3px rgba(0,0,0,0.25);
+}
+
+.cx-nav-link {
+    @extend .cx-link;
+    border-bottom: 3px solid $color-primary;
+    color: #fff;
+}
+
+.cx-nav-menu > li > a {
+    padding: 15px 4px;
+}
+
+.cx-search-form {
+    @extend .form-group;
+    margin: 6px 0 0 0;
+}
+
+.cx-menu {
+    background-color: $color-primary;
+    padding: 0px 30px;
+}
+
+.cx-mt100 {
+    margin-top: 100px;
+}
+
+.cx-tt-initial {
+    text-transform: initial;
+}
+
+.user-menu-footer {
+    color: #C0C0C0;
+    font-size: 1.3rem;
+    padding-left: 15px;
+}
+//end of home component
+
+//start of admin menu component
+//TODO remove any css that should be in custom admin css
+.cx-admin-sub-header {
+    @include cx-header(100%,55px,0px,$color-primary-dark);
+    margin-bottom: 30px;
+    padding: 5px 0;
+}
+
+.cx-sub-header {
+    @include cx-header(100%,55px,0px,$color-primary-dark);
+    margin-bottom: 30px;
+    padding: 5px 0;
+}
+
+.cx-sub-header-right {
+    float: right;
+    padding: 13px 0;
+    margin-right: 30px;
+}
+
+.cx-sub-header-title {
+    float: left;
+    font-size: 3rem;
+    margin-left: 30px;
+    width: 50%;
+}
+
+.cx-admin-sub-header-title {
+    font-size: 3rem;
+    margin-left: 30px;
+}
+
+.cx-admin-menu-container {
+    @include cx-container(100%,#ffffff);
+    margin: -74px auto;
+    padding-top: 1px;
+    height: 85vh;
+    min-width: 170px;
+    max-width: 200px;
+    padding-left: 0;
+    margin-left: 0;
+}
+
+.cx-admin-menu {
+    margin-top: 20px;
+    line-height: 2.3;
+    list-style-type: none;
+}
+
+.cx-admin-sub-menu {
+    margin-top: 0px;
+    line-height: 2.3;
+    list-style-type: none;
+    padding-left: 15px;
+}
+
+.cx-link {
+    color: #fff;
+    font-family: $font-family-medium;
+}
+
+.cx-link-admin {
+    @extend .cx-link;
+    color: $color-primary;
+}
+
+.cx-link:hover {
+    @extend .cx-link;
+    text-decoration: none;
+}
+
+.cx-link-active {
+    @include cx-active;
+}
+
+.cx-table-admin {
+    @extend .table, .table-bordered, .table-hover;
+    background-color: #FFF;
+}
+
+.cx-main-admin-menu-container {
+    background-color: #FFF;
+    height: 85vh;
+    min-width: 190px;
+    vertical-align: top;
+    width: 10%;
+}
+
+.cx-admin-content-container {
+    vertical-align: top;
+    width: 90%;
+}
+
+.cx-admin-sub-content-container {
+    padding: 0 30px 30px 30px;
+}
+
+.cx-admin-table {
+    width: 100%;
+}
+//end of admin menu component
+
+//start of account component
+//TODO remove any css that should be in account home css
+.cx-edit-container {
+    @include cx-container(500px,#eeeeee);
+    padding: 0;
+}
+
+
+.cx-error-required {
+    margin-bottom: 10px;
+}
+.cx-error-required-ms {
+    color: #FF0000;
+    font-size: 10.5px;
+    border-top: 2px solid red;
+    padding-top: 2px;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.cx-error-required::after {
+    color: #FF0000;
+    content: "This field is required";
+}
+
+.cx-error-required-ms::after {
+    content: "This field is required";
+}
+
+.cx-error-required-group {
+    font-size: 10px;
+    border-top: 2px solid red;
+    padding-top: 2px;
+    margin-bottom: 10px;
+}
+
+.cx-error-required-group::after {
+    color: #FF0000;
+    content: "You must select at least one dependency";
+}
+
+.cx-float-left {
+    float: left;
+}
+
+.cx-float-right {
+    float: right;
+}
+
+.cx-modal-assigned {
+    height: 250px;
+    overflow: auto;
+}
+
+.cx-modal-border {
+    border-right: 1px solid #95989A;
+}
+
+.cx-modal-cont {
+    @extend td;
+    border-top: none;
+    vertical-align: top;
+    padding: 10px;
+    background-color: #f3f3f3;
+    text-align: center;
+}
+
+.cx-modal-header {
+    text-align: center;
+    width: 50%;
+    background-color: #f3f3f3;
+    padding-top: 20px;
+    color: #95989A;
+}
+
+.cx-modal-header-left {
+    font-size: 18px;
+    display: inline;
+    padding-right: 10px;
+    float: left;
+}
+
+.cx-modal-header-center {
+    font-size: 18px;
+    margin: 0 auto;
+    width: 250px;
+    text-align: center;
+    padding-top: 20px;
+}
+
+.cx-modal-item {
+    @extend .badge;
+    display: block;
+    min-width: 10px;
+    padding: 8px 8px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #666666;
+    line-height: 1;
+    white-space: nowrap;
+    text-align: center;
+    background-color: $font-color-placeholder;
+    border-radius: 13px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    width: 75%;
+    margin: 10px auto;
+}
+
+.cx-modal-pool {
+    height: 250px;
+    overflow: auto;
+}
+
+.cx-table-edit {
+    @extend .table;
+    width: 100%;
+    margin-bottom: 0;
+}
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Modal Header */
+.modal-header {
+    padding: 2px 16px;
+    background-color: $color-primary;
+    color: white;
+    width: 47%;
+    margin: 0 auto;
+}
+
+/* Modal Body */
+.modal-body {
+    padding-top: 0px;
+    padding-right: 0;
+    padding-bottom: 16px;
+    padding-left: 0;
+}
+
+/* Modal Footer */
+.modal-footer {
+    background-color: #fff;
+    color: white;
+    width: 47%;
+    margin: 0 auto;
+}
+
+/* Modal Content */
+.modal-content {
+    position: relative;
+    background-color: transparent;
+    margin: 10% auto;
+    padding: 0;
+    border: none;
+    width: 80%;
+    box-shadow: none;
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+}
+
+.modal-content .modal-header {
+    border-bottom: none;
+    padding-top: 5px;
+    padding-right: 10px;
+    padding-bottom: 0;
+    padding-left: 10px;
+    width: 60%;
+    min-width: 650px;
+}
+
+.modal-content .modal-body {
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    width: 60%;
+    min-width: 650px;
+    margin: 0 auto;
+}
+
+.modal-content .modal-footer {
+    padding-top: 0;
+    padding-bottom: 15px;
+    width: 60%;
+    min-width: 650px;
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+    from {top: -300px; opacity: 0}
+    to {top: 0; opacity: 1}
+}
+
+@keyframes animatetop {
+    from {top: -300px; opacity: 0}
+    to {top: 0; opacity: 1}
+}
+
+.cx-cancel-edit {
+    @extend .cx-forgot-password;
+    color: $color-primary;
+    margin-right: 20px;
+    line-height: 3.3;
+}
+
+//end of account component
+
+
+//start of add content component
+//TODO remove any css that should be in custom content css
+select {
+    /* real concerns we are changing the select for the cs here here
+    I haven't researched more of this. */
+    background: url(../images/arrow-down.svg) no-repeat right !important;
+    background-size: 12px 12px !important;
+    border-bottom: 1px solid #ccc !important;
+    height: 35px !important;
+}
+
+.cx-multidropdown {
+    background-color: white;
+    border: none;
+    font-family: $font-family-primary !important;
+    font-size: 16px;
+    margin: 0px;
+    padding-left: 0;
+    position: relative;
+    top: -2px;
+    text-align: left;
+    width: 100%;
+}
+
+.cx-multidropdown span {
+    //This is for the caret in the ms dropdown
+    font-size: 16px;
+    border-top: 5px solid #aaa;
+    width: 10px;
+    float: right;
+    margin-top: 8px;
+}
+
+.cx-ms-container {
+    /* multiselect container style */
+    border: none;
+}
+
+.dropdown-list ul {
+    max-height: 122px !important;
+}
+
+.cx-multiselect li {
+    list-style-type: none;
+}
+
+.dropdown-list {
+    border: none !important;
+    border-radius: 3px;
+    background: #fff;
+    margin: 0px;
+    box-shadow: none !important;
+    z-index: 999 !important;
+}
+
+.dropup, .dropdown {
+    position: relative;
+    top: -1px;
+    border-bottom: 1px solid #dcdcdc;
+}
+
+//end of account edit component
+
+/*
+OVERRIDES
+These declarations are to override declarations in other libraries
+if it can be done in a custom component css, it should be done there
+*/
+
+/*
+Angualar Material Styling
+Until we have our own theme, this allows us to override and/or add our
+own styling to angular material components
+*/
+.mat-button-toggle {
+    /* Making AM toggle button match bootstrap buttons */
+    margin: 0;
+    padding: 0;
+    height: 36px;
+}
+
+.mat-button-toggle-action {
+    // Class to add action button styling to AM components
+    background-color: $color-primary-action;
+}
+
+.mat-button-toggle-action:hover {
+    background-color: $mat-button-hover;
+}
+
+.mat-button-toggle-label {
+    /* Make toggle text standard with other components */
+    color: $mat-button-text;
+    font-family: $font-family-medium;
+    font-size: $font-size-small;
+}
+
+.mat-card-content {
+    font-size: $font-size-base;
+}
+
+.mat-card-header {
+    color: $color-primary;
+    font-weight: bold;
+    font-style: italic;
+}
+
+.mat-input-subscript-wrapper {
+    font-size: $font-size-xxsmall;
+}
+.mat-ink-bar {
+    // material design underline
+    background-color: $color-primary-action !important;
+}
+
+.mat-tab-label {
+    line-height: normal !important;
+    height: auto !important;
+    color: $color-primary !important;
+    font-family: $font-family-primary !important;
+    font-size: $font-size-base !important;
+    text-align: left !important;
+    opacity: 1 !important;
+    padding: 15px 10px !important;
+}
+
+.mat-tab-label:focus {
+    //Controls the overlay color of any md object with focus
+    background-color: $color-primary-overlay;
+}
+
+textarea.mat-input-element {
+    background-color: $color-input-background;
+    border: 1px solid $color-primary-border;
+    padding: $input-padding;
+    white-space: pre;
+}
+
+.material-icons {
+    // material design icon class
+    color: $color-primary;
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;  /* Preferred icon size */
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+
+    /* Support for all WebKit browsers. */
+    -webkit-font-smoothing: antialiased;
+    /* Support for Safari and Chrome. */
+    text-rendering: optimizeLegibility;
+
+    /* Support for Firefox. */
+    -moz-osx-font-smoothing: grayscale;
+
+    /* Support for IE. */
+    font-feature-settings: 'liga';
+}

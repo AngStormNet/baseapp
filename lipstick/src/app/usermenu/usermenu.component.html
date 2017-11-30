@@ -1,0 +1,37 @@
+<div class="btn-group cx-margin-0" dropdown placement="bottom right">
+    <button id="user-menu" dropdownToggle type="button" class="btn btn-default cx-tt-initial dropdown-toggle">
+        {{ user.first_name }} {{ user.last_name }} <span class="caret"></span>
+    </button>
+    <ul *dropdownMenu class="dropdown-menu dropdown-menu-right" role="menu">
+        <li *ngIf="userService.hasGroup('Administrator')" role="menuitem">
+            <a routerLink="/administration" id="usermenu-admin" class="dropdown-item">
+                Administration
+            </a>
+        </li>
+        <li *ngIf="userService.canView('client_name')" role="menuitem">
+            <a [routerLink]="[ '/clients', { outlets: { subscriptionoutlet: ['subscriptions'] } } ]" class="dropdown-item">
+                Client Subscriptions
+            </a>
+        </li>
+        <li role="menuitem">
+            <a class="usermenu-nav-link dropdown-item" routerLink="/myaccount ">
+                My Account
+            </a>
+        </li>
+        <li role="menuitem">
+            <a (click)="onUserGuide()" class="dropdown-item">
+                User Guide
+            </a>
+        </li>
+        <li class="divider dropdown-divider"></li>
+        <li class="user-menu-signout" role="menuitem">
+            <a (click)="userService.logout()" class="dropdown-item">
+                Sign Out
+            </a>
+        </li>
+        <li class="divider dropdown-divider"></li>
+        <li class="user-menu-footer" role="menuitem">
+            {{ appname }} {{ version }}
+        </li>
+    </ul>
+</div>

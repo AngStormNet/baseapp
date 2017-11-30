@@ -1,0 +1,27 @@
+<table class="cx-admin-table">
+    <tr>
+        <td class="cx-main-admin-menu-container">
+            <ul class="cx-admin-menu" role="menu">
+                <li role="menuitem">
+                    <a id="linkAccounts" routerLink="accounts" class="cx-link-admin" routerLinkActive="cx-link-active">
+                        Accounts
+                    </a>
+
+                </li>
+                <li role="menuitem">
+                    <a routerLink="settings" class="cx-link-admin" routerLinkActive="cx-link-active">
+                        Settings
+                    </a>
+                </li>
+            </ul>
+        </td>
+        <td class="cx-admin-content-container">
+            <div class="cx-admin-sub-header">
+                <span  id="admin-title" class="cx-admin-sub-header-title"></span>
+                </div>
+            <div class="cx-admin-sub-content-container">
+                <router-outlet></router-outlet>
+            </div>
+        </td>
+    </tr>
+</table>

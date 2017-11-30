@@ -1,0 +1,75 @@
+version: '3'
+
+volumes:
+    pg_data:
+    uploaded_media:
+
+services:
+
+    ldap:
+        image: osixia/openldap:1.1.8
+
+    db:
+        image: postgres:9.6-alpine
+        volumes:
+            - pg_data:/var/lib/postgresql/data
+        environment:
+            - POSTGRES_USER=${DATABASE_USER}
+            - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
+            - POSTGRES_DB=${DATABASE_NAME}
+
+    backend:
+        build: ./pig
+        volumes:
+            - ./pig/src:/srv/app
+            - uploaded_media:/srv/files
+        depends_on:
+            - db
+            - ldap
+        links:
+            - db
+        expose:
+            - "8000"
+        ports:
+            - "8080:8000"
+        environment:
+            - DEBUG=1
+            - DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY}
+            - DATABASE_HOST=${DATABASE_HOST}
+            - DATABASE_DB=${DATABASE_NAME}
+            - DATABASE_USER=${DATABASE_USER}
+            - DATABASE_PASSWORD=${DATABASE_PASSWORD}
+            - DATABASE_PORT=${DATABASE_PORT}
+            - LDAP_BIND_PASSWORD=${LDAP_BIND_PASSWORD}
+            - MEDIA_VOLUME=${MEDIA_VOLUME}
+            - MEDIA_URL=${MEDIA_URL}
+            - ADMIN_USERS=${ADMIN_USERS}
+
+    frontend: 
+        build: ./lipstick
+        links:
+            - backend
+        volumes:
+            - ./lipstick:/srv/app
+        expose:
+            - "4200"
+        ports:
+            - "4242:4200"
+        environment:
+            - DEBUG=1
+    
+    director:
+        ports:
+            - "80:80"
+            - "443:443"
+        build:
+            context: ./docker/director
+            dockerfile: Dockerfile-dev
+        links:
+            - backend
+            - frontend
+        depends_on:
+            - frontend
+        volumes:
+            - uploaded_media:${MEDIA_VOLUME}/protected
+

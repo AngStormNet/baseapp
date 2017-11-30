@@ -1,0 +1,51 @@
+@import '../../../assets/css/modules/fonts';
+@import '../../../assets/css/modules/colors';
+@import '../../../assets/css/modules/margins';
+
+.cx-admin-detail-card {
+    padding: $margin-base-px;
+    font-size: $font-size-small;
+    font-weight: $font-weight-bold;
+    border-top: 0;
+    background-color: $color-primary-contrast;
+    margin: $margin-base;
+    box-shadow: $card-shadow-base;
+    min-width: 700px;
+}
+
+.cx-admin-detail-edit {
+    float: right;
+}
+
+.cx-admin-buttons {
+    width: 50%;
+    margin-left: 50%;
+    padding-top: 25px;
+}
+
+.cx-admin-display {
+    width: 90%;
+    float: left;
+    padding: $input-padding;
+}
+
+.cx-admin-form {
+    width: 50%;
+    float: left;
+}
+
+.cx-admin-value-form {
+    width: 35%;
+    float: left;
+    padding-left: $input-padding;
+    padding-right: $input-padding;
+}
+
+.cx-admin-value-name{
+    width: 35%;
+    text-align: left;
+}
+
+.cx-admin-values {
+    display: inline;
+}

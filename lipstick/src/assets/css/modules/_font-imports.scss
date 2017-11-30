@@ -1,0 +1,10 @@
+//import fonts
+@import 'fontMixin';
+
+@include fontFace('Roboto-Black','../fonts/RobotoTTF/Roboto-Black',"normal");
+@include fontFace('Roboto-Regular','../fonts/RobotoTTF/Roboto-Regular',"normal");
+@include fontFace('Roboto-Light','../fonts/RobotoTTF/Roboto-Light',"normal");
+@include fontFace('Roboto-Medium','../fonts/RobotoTTF/Roboto-Medium',"normal");
+@include fontFace('Roboto-Thin','../fonts/RobotoTTF/Roboto-Thin',"normal");
+@include fontFace('Helvetica Neue','../fonts/HelveticaNeue/HelveticaNeue-Thin',"100");
+

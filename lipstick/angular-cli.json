@@ -1,0 +1,68 @@
+{
+  "project": {
+    "name": "lipstick"
+  },
+  "apps": [
+    {
+      "root": "src",
+      "outDir": "dist",
+      "assets": [
+        "assets",
+        "assets/images/favicon-16x16.png"
+      ],
+      "index": "index.html",
+      "main": "main.ts",
+      "polyfills": "polyfills.ts",
+      "test": "test.ts",
+      "tsconfig": "tsconfig.json",
+      "prefix": "cnx",
+      "styles": [
+        "assets/css/content-exchange.scss",
+        "../node_modules/dragula/dist/dragula.min.css",
+        "../node_modules/font-awesome/css/font-awesome.css",
+        "assets/fonts/iconfont/material-icons.css"
+      ],
+      "scripts": [
+        "../node_modules/tether/dist/js/tether.js",
+        "../node_modules/jquery/dist/jquery.js"
+      ],
+      "environmentSource": "environments/environment.ts",
+      "environments": {
+        "dev": "environments/environment.ts",
+        "e2e": "environments/environment.e2e.ts",
+        "prod": "environments/environment.prod.ts"
+      }
+    }
+  ],
+  "e2e": {
+    "protractor": {
+      "config": "./protractor.conf.js"
+    }
+  },
+  "lint": [
+    {
+      "files": "src/**/*.ts",
+      "project": "src/tsconfig.json"
+    },
+    {
+      "files": "e2e/**/*.ts",
+      "project": "e2e/tsconfig.json"
+    }
+  ],
+  "test": {
+    "karma": {
+      "config": "./karma.conf.js"
+    }
+  },
+  "defaults": {
+    "styleExt": "scss",
+    "class": {
+      "spec": false
+    },
+    "component": {
+      "spec": true,
+      "inlineStyle": false,
+      "inlineTemplate": false
+    }
+  }
+}

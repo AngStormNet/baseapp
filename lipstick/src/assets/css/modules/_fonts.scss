@@ -1,0 +1,28 @@
+@import './colors';
+// Families
+$font-family-primary: Roboto, Helvetica, Arial, sans-serif;
+$font-family-strong: 'Roboto-Black', Helvetica, Arial, sans-serif;
+$font-family-medium: 'Roboto-Medium', Helvetica, Arial, sans-serif;
+$font-family-light: 'Roboto-Thin', Helvetica, Arial, sans-serif;
+$font-family-logo: 'Helvetica Neue', sans-serif;
+
+// Colors
+$font-color-contrast: $color-primary-contrast;
+$font-color-label: #CCC;
+$font-color-label-dark: #95989A;
+$font-color-placeholder: #CCC;
+$font-color-primary: $color-primary;
+
+// Sizes
+$font-size-xxsmall: 10px;
+$font-size-xsmall: 12px;
+$font-size-small: 14px;
+$font-size-base: 16px;
+$font-size-large: 18px;
+$font-size-xlarge: 24px;
+
+//Weight
+$font-weight-base: 500;
+$font-weight-bold: 900;
+
+

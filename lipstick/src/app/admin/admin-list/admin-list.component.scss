@@ -1,0 +1,11 @@
+.cx-admin-width {
+    /* important to override width in LI property */
+    width: 75% !important;
+    margin: auto;
+}
+
+.cx-admin-add-button {
+    right: 80px;
+    top: 160px;
+    position: fixed;
+}

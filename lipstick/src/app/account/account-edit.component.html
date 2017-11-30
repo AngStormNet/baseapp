@@ -1,0 +1,41 @@
+<app-modal>
+    <div modal-header>
+        <h3 class="cx-modal-header-left">Group Assignment</h3>
+        <h3 class="cx-modal-header-center">
+            {{ user?.first_name }} {{ user?.last_name }}
+        </h3>
+    </div>
+    <div modal-body>
+        <alert></alert>
+        <table class="cx-table-edit">
+            <thead>
+                <th class="cx-modal-header cx-modal-border">Groups Available</th>
+                <th class="cx-modal-header">Groups Assigned</th>
+            </thead>
+            <tr>
+                <td class="cx-modal-cont cx-modal-border">
+                    <div [dragula]='"groups"' [dragulaModel]='GroupsAvailable' class="cx-modal-pool">&nbsp;
+                        <div class="cx-modal-item" *ngFor="let group of GroupsAvailable" id="{{ group }}" [attr.data-id]="group">
+                            {{ group }}
+                        </div>
+                    </div>
+                </td>
+                <td class="cx-modal-cont">&nbsp;
+                    <div [dragula]='"groups"' [dragulaModel]='GroupsAssigned' class="cx-modal-assigned">
+                        <div class="cx-modal-item" *ngFor="let group of GroupsAssigned" id="{{ group }}" [attr.data-id]="group">
+                            {{ group }}
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div modal-footer>
+        <div class="col-md-12">
+            <div class="form-group pull-right">
+                <button md-button class="cx-button-cancel" (click)="closeModal()">Cancel</button>
+                <button md-button (click)="saveGroups()" class="cx-button-action">Update</button>
+            </div>
+        </div>
+    </div>
+</app-modal>

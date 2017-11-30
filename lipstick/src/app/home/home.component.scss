@@ -1,0 +1,33 @@
+@import '../../assets/css/modules/fonts';
+@import '../../assets/css/modules/colors';
+@import '../../assets/css/modules/margins';
+
+.cx-home-content {
+    position: relative;
+    top: 135px;
+}
+
+.cx-home-header {
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    z-index: 2000;
+}
+
+.cx-home-header-brand {
+    background-color: $color-primary-background;
+    height: 78px;
+}
+
+.cx-home-nav {
+    background-color: $color-primary;
+    padding: 0 $margin-base-px;
+}
+
+.cx-home-nav-item {
+    margin-right: 25px;
+}
+
+.cx-home-nav-link-active {
+    border-bottom: 3px solid $color-primary-action;
+}

@@ -1,0 +1,4 @@
+<div *ngIf="message" [ngClass]="{ 'alert': message, 'alert-success': message.type === 'success', 'alert-danger': message.type === 'error', 'cx-help': message.type === 'help' }">
+    <span id="alert-message">{{message.text}}</span>
+    <span (click)="onClear()" class="alert-clear">X</span>
+</div>

@@ -1,0 +1,48 @@
+version: '3'
+
+volumes:
+    pg_data:
+    uploaded_media:
+
+services:
+    db:
+        image: postgres:9.6-alpine
+        volumes:
+            - pg_data:/var/lib/postgresql/data
+        environment:
+            - POSTGRES_USER=${DATABASE_USER}
+            - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
+            - POSTGRES_DB=${DATABASE_NAME}
+
+    backend:
+        build: ./docker/pig
+        volumes:
+            - uploaded_media:${MEDIA_VOLUME}
+        depends_on:
+            - db
+        links:
+            - db
+        ports:
+            - "8000:8000"
+        environment:
+            - DEBUG=0
+            - DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY}
+            - DATABASE_HOST=${DATABASE_HOST}
+            - DATABASE_DB=${DATABASE_NAME}
+            - DATABASE_USER=${DATABASE_USER}
+            - DATABASE_PASSWORD=${DATABASE_PASSWORD}
+            - DATABASE_PORT=${DATABASE_PORT}
+            - LDAP_BIND_PASSWORD=${LDAP_BIND_PASSWORD}
+            - MEDIA_VOLUME=${MEDIA_VOLUME}
+            - MEDIA_URL=${MEDIA_URL}
+            - ADMIN_USERS=${ADMIN_USERS}
+
+    director:
+        ports:
+            - "80:80"
+            - "443:443"
+        build: ./docker/director
+        links:
+            - backend
+        volumes:
+            - uploaded_media:${MEDIA_VOLUME}/protected

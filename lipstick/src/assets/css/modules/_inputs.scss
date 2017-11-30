@@ -1,0 +1,23 @@
+@import './colors';
+@import './fonts';
+
+// Background
+$input-background-color: #F6F6F6;
+
+// Border
+$input-border-color: $color-primary-border;
+$input-border-width-small: 1px;
+$input-border-width-base: 1px;
+$input-border-width-large: 2px;
+$input-border-width-xlarge: 4px;
+
+// Font
+$input-font-color: $color-primary-text;
+$input-font-family: $font-family-primary;
+
+
+// Padding
+$input-padding: 4px;
+
+// Textarea
+//TODO start defining basic text areas

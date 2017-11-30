@@ -1,0 +1,52 @@
+<div *ngIf="!showObject && details; else editBlock" class="cx-admin-detail-card" (click)="onEdit(details.name)">
+    <span *ngIf="!valueForm; else valueDisplay">
+        {{ details.name }}
+        <div class="cx-admin-detail-edit">
+                <i class="material-icons">mode_edit</i>
+        </div>
+    </span>
+</div>
+
+<ng-template #editBlock>
+    <div class="cx-admin-detail-card">
+        <form (ngSubmit)="onSubmit(nameForm)" [formGroup]="nameForm" novalidate>
+            <ng-template #valueEditForm>
+                <md-input-container class="cx-admin-value-form cx-margin-small-top">
+                    <input mdInput placeholder="Name (Read Only)" id="name" class="cx-textarea" formControlName="name" name="name" readonly="true">
+                </md-input-container>
+
+                <md-input-container class="cx-admin-value-form cx-margin-small-top">
+                    <input mdInput placeholder="Value" id="value" class="cx-textarea" formControlName="value" name="value">
+                </md-input-container>
+            </ng-template>
+            <div *ngIf="!valueForm; else valueEditForm">
+                <md-input-container class="cx-admin-form cx-margin-small-top">
+                    <input mdInput placeholder="Name" id="name" class="cx-textarea" formControlName="name" name="name">
+                </md-input-container>
+            </div>
+            <div class="cx-admin-buttons cx-text-align-right">
+                <button md-button type="button" class="cx-button-cance cx-margin-base-right" (click)="onClose()">Cancel</button>
+                <button md-button class="cx-button-action" [disabled]="nameForm.invalid">Save</button>
+            </div>
+        </form>
+    </div>
+</ng-template>
+
+<ng-template #valueDisplay>
+    <table class="cx-w100">
+        <tr>
+            <td class="cx-label cx-admin-value-name">Name</td>
+            <td class="cx-label cx-admin-value-name">Value</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td class="cx-admin-value-name">{{ details.name }}</td>
+            <td class="cx-admin-value-name">{{ details.value }}</td>
+            <td>
+                <div class="cx-admin-detail-edit">
+                    <i class="material-icons">mode_edit</i>
+                </div>
+            </td>
+        </tr>
+    </table>
+</ng-template>
